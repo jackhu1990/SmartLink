@@ -1,9 +1,8 @@
+
 var exec = require('cordova/exec');
-
-var SmartLink = function () {}
-
-SmartLink.prototype.getExtra = function(args, success, error) {
+var SmartLink = {};
+SmartLink.getExtra = function(success, error, args) {
     exec(success, error, "SmartLink", "getExtra", args);
-};
-var smartLink = new SmartLink();
-module.exports = smartLink;
+}
+
+module.exports = SmartLink;

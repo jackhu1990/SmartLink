@@ -7,14 +7,14 @@ import org.json.JSONException;
 
 public class SmartLink extends CordovaPlugin {
 
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) 
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
         if (action.equals("getExtra")) {
             long i = args.getLong(0);
             if (i==27) {
-                callbackContext.success("成功");
+                callbackContext.success("{\"res\": \"成功\"}");
             } else {
-                callbackContext.error("错误");
+                callbackContext.error("{\"res\": \"失败\"}");
             }
             return true;
         }
