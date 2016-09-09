@@ -12,7 +12,7 @@ public class SmartLink extends CordovaPlugin {
         if (action.equals("getExtra")) {
             long i = args.getLong(0);
             if (i==27) {
-                callbackContext.success("成功"));
+                callbackContext.success("成功");
             } else {
                 callbackContext.error("错误");
             }
