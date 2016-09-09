@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<plugin id="com.nodehope.ecloud.cordova" version="0.0.1" 
-        xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:rim="http://www.blackberry.com/ns/widgets"
+        id="cordova-plugin-smartLink"
+        version="1.2.0">
     <name>SmartLink</name>
-    <description>对wifi模块厂家硬件sdk封装成cordova</description>
+    <description>瀵箇ifi妯″潡鍘傚纭欢sdk灏佽鎴恈ordova</description>
     <js-module name="SmartLink" src="www/SmartLink.js">
-        <clobbers target="cordova.plugins.SmartLink"/>
+        <clobbers target="SmartLink"/>
     </js-module>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
@@ -13,6 +14,11 @@
                 <param name="android-package" value="com.nodehope.ecloud.cordova.SmartLink"/>
             </feature>
         </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+
         <source-file src="src/android/SmartLink.java" target-dir="src/com/nodehope/ecloud/cordova"/>
     </platform>
 </plugin>
