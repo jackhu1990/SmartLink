@@ -37,9 +37,19 @@ public class SmartLink extends CordovaPlugin {
                         callbackContext.success(module.getMac());
                     }
                     @Override
+                    public void onCompleted() {
+                        });
+                    }
+                    @Override
                     public void onTimeOut() {
                         callbackContext.error("未连接成功,超时");
                     }
+                    @Override
+                    protected void onDestroy() {
+                        mSnifferSmartLinker.setOnSmartLinkListener(null);
+                        mSnifferSmartLinker.stop();
+                    }
+
 
                 });
                 //开始 smartLink
