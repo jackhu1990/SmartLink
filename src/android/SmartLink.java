@@ -29,8 +29,7 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     }
     @Override
     public void onCompleted() {
-    });
-}
+    }
     @Override
     public void onTimeOut() {
         callbackContext.error("未连接成功,超时");
