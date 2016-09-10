@@ -46,12 +46,14 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
+
+        mSnifferSmartLinker = MulticastSmartLinker.getInstance();
         mCallbackContext = callbackContext;
         Context context = this.cordova.getActivity().getApplicationContext();
+
         if (action.equals("startLink")) {
             String ssid = args.getString(0);
             String password = args.getString(1);
-            mSnifferSmartLinker = MulticastSmartLinker.getInstance();
             //设置要配置的ssid 和pswd
             try {
                 mSnifferSmartLinker.setOnSmartLinkListener(SmartLink.this);
