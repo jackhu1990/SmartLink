@@ -12,7 +12,7 @@ public class SmartLink extends CordovaPlugin {
         if (action.equals("startLink")) {
             String ssid = args.getString(0);
             String password = args.getString(1);
-            if (ssid == "wifi") {
+            if (ssid.equals("wifi")) {
                 callbackContext.success(ssid);
             } else {
                 callbackContext.error(password);
