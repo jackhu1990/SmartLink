@@ -22,22 +22,17 @@ import android.content.Context;
 public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     //连接控制器
     protected ISmartLinker mSnifferSmartLinker;
-
     //回调上下文
-    CallbackContext mCallbackContext
+    protected CallbackContext mCallbackContext
 
-    @Override
     public void onLinked(final SmartLinkedModule module) {
         mCallbackContext.success(module.getMac());
     }
-    @Override
     public void onCompleted() {
     }
-    @Override
     public void onTimeOut() {
         mCallbackContext.error("未连接成功,超时");
     }
-    @Override
     protected void onDestroy() {
         mSnifferSmartLinker.setOnSmartLinkListener(null);
         mSnifferSmartLinker.stop();
