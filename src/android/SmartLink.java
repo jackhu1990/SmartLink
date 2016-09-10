@@ -10,9 +10,14 @@ import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.os.Handler;
+import android.app.Activity;
+import android.content.Context;
 
 public class SmartLink extends CordovaPlugin {
     //连接控制器
