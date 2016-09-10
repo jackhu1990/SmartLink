@@ -19,9 +19,27 @@ import android.os.Handler;
 import android.app.Activity;
 import android.content.Context;
 
-public class SmartLink extends CordovaPlugin {
+public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     //连接控制器
     protected ISmartLinker mSnifferSmartLinker;
+
+    @Override
+    public void onLinked(final SmartLinkedModule module) {
+        callbackContext.success(module.getMac());
+    }
+    @Override
+    public void onCompleted() {
+    });
+}
+    @Override
+    public void onTimeOut() {
+        callbackContext.error("未连接成功,超时");
+    }
+    @Override
+    protected void onDestroy() {
+        mSnifferSmartLinker.setOnSmartLinkListener(null);
+        mSnifferSmartLinker.stop();
+    }
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
@@ -31,27 +49,7 @@ public class SmartLink extends CordovaPlugin {
             mSnifferSmartLinker = MulticastSmartLinker.getInstance();
             //设置要配置的ssid 和pswd
             try {
-                mSnifferSmartLinker.setOnSmartLinkListener(new OnSmartLinkListener(){
-                    @Override
-                    public void onLinked(final SmartLinkedModule module) {
-                        callbackContext.success(module.getMac());
-                    }
-                    @Override
-                    public void onCompleted() {
-                        });
-                    }
-                    @Override
-                    public void onTimeOut() {
-                        callbackContext.error("未连接成功,超时");
-                    }
-                    @Override
-                    protected void onDestroy() {
-                        mSnifferSmartLinker.setOnSmartLinkListener(null);
-                        mSnifferSmartLinker.stop();
-                    }
-
-
-                });
+                mSnifferSmartLinker.setOnSmartLinkListener(SmartLink.this);
                 //开始 smartLink
                 mSnifferSmartLinker.start(getApplicationContext(), password.toString().trim(),
                         ssid.toString().trim());
