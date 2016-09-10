@@ -47,6 +47,7 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
         mCallbackContext = callbackContext;
+        Context context = this.cordova.getActivity().getApplicationContext();
         if (action.equals("startLink")) {
             String ssid = args.getString(0);
             String password = args.getString(1);
@@ -55,7 +56,7 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
             try {
                 mSnifferSmartLinker.setOnSmartLinkListener(SmartLink.this);
                 //开始 smartLink
-                mSnifferSmartLinker.start(this.cordova.getActivity().getApplicationContext(), password.trim(), ssid.trim());
+                mSnifferSmartLinker.start(context, password.trim(), ssid.trim());
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -64,7 +65,6 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
             return true;
         }
         else if (action.equals("getWifiInfo")) {
-            Context context = this.cordova.getActivity().getApplicationContext();
             WifiManager wm = (WifiManager)this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
             if (wm !=null) {
                 WifiInfo wi = wm.getConnectionInfo();
@@ -72,6 +72,14 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
                 mCallbackContext.success(ssid);
             } else {
                 mCallbackContext.error("未连接wifi,请连接");
+            }
+            return true;
+        }
+        else if (action.equals("isSmartLinking")) {
+            if ( mSnifferSmartLinker.isSmartLinking()) {
+                mCallbackContext.success("连接中");
+            } else {
+                mCallbackContext.error("未连接中");
             }
             return true;
         }
