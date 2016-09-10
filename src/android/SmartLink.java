@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.app.Activity;
 import android.content.Context;
 
+
 public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     //连接控制器
     protected ISmartLinker mSnifferSmartLinker;
@@ -54,7 +55,7 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
             try {
                 mSnifferSmartLinker.setOnSmartLinkListener(SmartLink.this);
                 //开始 smartLink
-                mSnifferSmartLinker.start(getApplicationContext(), password.trim(), ssid.trim());
+                mSnifferSmartLinker.start(this.cordova.getActivity().getApplicationContext(), password.trim(), ssid.trim());
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -63,7 +64,8 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
             return true;
         }
         else if (action.equals("getWifiInfo")) {
-            WifiManager wm = (WifiManager)getSystemService(WIFI_SERVICE);
+            Context context = this.cordova.getActivity().getApplicationContext();
+            WifiManager wm = (WifiManager)this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
             if (wm !=null) {
                 WifiInfo wi = wm.getConnectionInfo();
                 String ssid = wi.getSSID();
