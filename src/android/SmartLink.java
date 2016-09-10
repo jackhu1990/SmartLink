@@ -37,7 +37,7 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
         mCallbackContext.error("未连接成功,超时");
     }
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         mSnifferSmartLinker.setOnSmartLinkListener(null);
         mSnifferSmartLinker.stop();
     }
@@ -53,8 +53,8 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
             try {
                 mSnifferSmartLinker.setOnSmartLinkListener(SmartLink.this);
                 //开始 smartLink
-                mSnifferSmartLinker.start(getApplicationContext(), password.toString().trim(),
-                        ssid.toString().trim());
+                mSnifferSmartLinker.start(getApplicationContext(), password.trim(),
+                        ssid.trim());
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
