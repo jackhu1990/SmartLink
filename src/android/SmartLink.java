@@ -36,12 +36,12 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     public void onTimeOut() {
         mCallbackContext.error("未连接成功,超时");
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mSnifferSmartLinker.setOnSmartLinkListener(null);
-        mSnifferSmartLinker.stop();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mSnifferSmartLinker.setOnSmartLinkListener(null);
+//        mSnifferSmartLinker.stop();
+//    }
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
@@ -54,22 +54,22 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
             try {
                 mSnifferSmartLinker.setOnSmartLinkListener(SmartLink.this);
                 //开始 smartLink
-                mSnifferSmartLinker.start(cordova.getApplicationContext(), password.trim(), ssid.trim());
+                mSnifferSmartLinker.start(getApplicationContext(), password.trim(), ssid.trim());
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-                callbackContext.error("连接wifi时出现异常");
+                mCallbackContext.error("连接wifi时出现异常");
             }
             return true;
         }
         else if (action.equals("getWifiInfo")) {
-            WifiManager wm = (WifiManager) cordova.getSystemService(cordova.WIFI_SERVICE);
+            WifiManager wm = (WifiManager)getSystemService(WIFI_SERVICE);
             if (wm !=null) {
                 WifiInfo wi = wm.getConnectionInfo();
                 String ssid = wi.getSSID();
-                callbackContext.success(ssid);
+                mCallbackContext.success(ssid);
             } else {
-                callbackContext.error("未连接wifi,请连接");
+                mCallbackContext.error("未连接wifi,请连接");
             }
             return true;
         }
