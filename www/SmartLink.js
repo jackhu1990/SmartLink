@@ -7,7 +7,7 @@ SmartLink.prototype.startLink = function (successCallback, errorCallback, wifi, 
 SmartLink.prototype.getWifiInfo = function (successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, "SmartLink", "getWifiInfo", []);
 };
-SmartLink.prototype.isSmartLinking = function () {
+SmartLink.prototype.isSmartLinking = function (successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, "SmartLink", "isSmartLinking", []);
 }
 
