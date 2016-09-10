@@ -24,9 +24,12 @@
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.INTERNET" />
         </config-file>
         <source-file src="src/android/SmartLink.java" target-dir="src/com/nodehope/cordova/plugins/smartlink"/>
+        <source-file src="src/android/hiflying-iots-android-smartlink-7.0.3.jar" target-dir="libs" framework="true" />
     </platform>
 
 </plugin>
