@@ -26,7 +26,7 @@ public class SmartLink extends CordovaPlugin {
             mSnifferSmartLinker = MulticastSmartLinker.getInstance();
             //设置要配置的ssid 和pswd
             try {
-                mSnifferSmartLinker.setOnSmartLinkListener(new MyListener implements OnSmartLinkListener{
+                mSnifferSmartLinker.setOnSmartLinkListener(new OnSmartLinkListener{
                     @Override
                     public void onLinked(final SmartLinkedModule module) {
                         callbackContext.success(module.getMac());
