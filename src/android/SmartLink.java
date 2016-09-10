@@ -1,4 +1,4 @@
-package com.nodehope.ecloud.cordova;
+package com.nodehope.cordova.plugins.smartlink;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -9,12 +9,13 @@ public class SmartLink extends CordovaPlugin {
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
-        if (action.equals("getExtra")) {
-            long i = args.getLong(0);
-            if (i==27) {
-                callbackContext.success("{\"res\": \"成功\"}");
+        if (action.equals("startLink")) {
+            String ssid = args.getString(0);
+            String password = args.getString(1);
+            if (ssid == "wifi") {
+                callbackContext.success(ssid);
             } else {
-                callbackContext.error("{\"res\": \"失败\"}");
+                callbackContext.error(password);
             }
             return true;
         }

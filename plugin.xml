@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="cordova-plugin-smartLink"
-        version="0.0.1">
+<plugin
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-smartlink"
+        version="2.3.1">
+
     <name>SmartLink</name>
     <description>对wifi模块厂家硬件sdk封装成cordova</description>
 
     <engines>
-        <engine name="cordova" version=">=3.0.0" />
+        <engine name="cordova" version=">=3.0.0"/>
     </engines>
 
-    <js-module name="SmartLink" src="www/SmartLink.js">
-        <clobbers target="SmartLink"/>
+    <js-module src="www/SmartLink.js" name="SmartLink">
+        <clobbers target="window.plugins.smartlink"/>
     </js-module>
 
+
+    <!-- android -->
     <platform name="android">
-        <config-file parent="/*" target="res/xml/config.xml">
+        <config-file target="res/xml/config.xml" parent="/*">
             <feature name="SmartLink">
-                <param name="android-package" value="com.nodehope.ecloud.cordova.SmartLink"/>
+                <param name="android-package" value="com.nodehope.cordova.plugins.smartlink.SmartLink"/>
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
-        <source-file src="src/android/SmartLink.java" target-dir="src/com/nodehope/ecloud/cordova"/>
+        <source-file src="src/android/SmartLink.java" target-dir="src/com/nodehope/cordova/plugins/smartlink"/>
     </platform>
 
 </plugin>
