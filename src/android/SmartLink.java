@@ -36,6 +36,12 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     public void onTimeOut() {
         mCallbackContext.error("未连接成功,超时");
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSnifferSmartLinker.setOnSmartLinkListener(null);
+        mSnifferSmartLinker.stop();
+    }
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
