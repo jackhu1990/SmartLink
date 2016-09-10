@@ -23,16 +23,19 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     //连接控制器
     protected ISmartLinker mSnifferSmartLinker;
 
+    //回调上下文
+    CallbackContext mCallbackContext
+
     @Override
     public void onLinked(final SmartLinkedModule module) {
-        callbackContext.success(module.getMac());
+        mCallbackContext.success(module.getMac());
     }
     @Override
     public void onCompleted() {
     }
     @Override
     public void onTimeOut() {
-        callbackContext.error("未连接成功,超时");
+        mCallbackContext.error("未连接成功,超时");
     }
     @Override
     protected void onDestroy() {
@@ -42,6 +45,7 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext)
             throws JSONException {
+        mCallbackContext = callbackContext;
         if (action.equals("startLink")) {
             String ssid = args.getString(0);
             String password = args.getString(1);
