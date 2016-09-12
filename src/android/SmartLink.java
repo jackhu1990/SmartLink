@@ -35,7 +35,7 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
     }
     @Override
     public void onTimeOut() {
-        mCallbackContext.error("未连接成功,超时");
+        mCallbackContext.error("超时,未成功,请检查wifi帐号密码是否正确");
     }
 //    @Override
 //    protected void onDestroy() {
