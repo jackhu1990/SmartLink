@@ -12,7 +12,7 @@ cordova plugin add https://github.com/jackhu1990/SmartLink.git
                        alert(data);
                    }, function (data) {
                        alert(data);
-                   }, "wifi", "68008232")
+                   }, "wifi", "password")
                }
 ```
 
