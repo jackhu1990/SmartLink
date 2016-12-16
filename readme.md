@@ -9,9 +9,9 @@ cordova plugin add https://github.com/jackhu1990/SmartLink.git
 ```
                $scope.testCordova = function () {
                    window.plugins.smartlink.startLink(function (data) {
-                       alert(data);
+                       alert("success" + data);
                    }, function (data) {
-                       alert(data);
+                       alert("failed" + data);
                    }, "wifi", "password")
                }
 ```
