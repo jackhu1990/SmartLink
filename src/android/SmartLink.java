@@ -85,6 +85,11 @@ public class SmartLink extends CordovaPlugin implements OnSmartLinkListener{
             }
             return true;
         }
+       else if (action.equals("stopSmartLinking")) {
+               mSnifferSmartLinker.stop();
+               mCallbackContext.success("配网停止");
+                return true;
+            }
         return false;
     }
 }
